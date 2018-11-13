@@ -13,6 +13,15 @@ namespace Sharp_SDK
         public const byte MAX_LED_COLUMN = 22;
 
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern string GetNowTime();
+
+        [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern long GetNowCPUUsage();
+
+        [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern int GetRamUsage();
+
+        [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern bool IsDevicePlug();
 
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
