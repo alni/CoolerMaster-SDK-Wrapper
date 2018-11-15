@@ -9,8 +9,8 @@ namespace Sharp_SDK
 {
     public static class SDK
     {
-        public const byte MAX_LED_ROW = 6;
-        public const byte MAX_LED_COLUMN = 22;
+        public const byte MAX_LED_ROW = 7;
+        public const byte MAX_LED_COLUMN = 24;
 
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern string GetNowTime();
@@ -38,6 +38,9 @@ namespace Sharp_SDK
 
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern bool SwitchLedEffect(EFF_INDEX iEffectIndex);
+
+        [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool RefreshLed(bool bAuto);
 
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern bool SetAllLedColor(COLOR_MATRIX colorMatrix);
