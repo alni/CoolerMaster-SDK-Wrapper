@@ -43,7 +43,29 @@ namespace Sharp_SDK
         public static extern bool RefreshLed(bool bAuto);
 
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
-        public static extern bool SetAllLedColor(COLOR_MATRIX colorMatrix);
+        private static extern bool SetAllLedColor(COLOR_MATRIX_NATIVE colorMatrix);
+
+        public static bool SetAllLedColor(COLOR_MATRIX colorMatrx)
+        {
+            KEY_COLOR[][] data = colorMatrx.KeyColor;
+            GCHandle[] handles = new GCHandle[data.Length];
+            for (int i = 0; i < data.Length; i++)
+            {
+                handles[i] = GCHandle.Alloc(data[i], GCHandleType.Pinned);
+            }
+            IntPtr[] pointers = new IntPtr[handles.Length];
+            for (int i = 0; i < handles.Length; i++)
+            {
+                pointers[i] = handles[i].AddrOfPinnedObject();
+            }
+            COLOR_MATRIX_NATIVE colorMatrix = new COLOR_MATRIX_NATIVE(pointers);
+            bool result = SetAllLedColor(colorMatrix);
+            for (int i = 0; i < handles.Length; i++)
+            {
+                handles[i].Free();
+            }
+            return result;
+        }
 
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern void SetControlDevice(DEVICE_INDEX devIndex);
@@ -76,6 +98,17 @@ namespace Sharp_SDK
             this.KeyColor = colors;
         }
     }
+
+    public struct COLOR_MATRIX_NATIVE
+    {
+        public IntPtr[] KeyColor;
+
+        public COLOR_MATRIX_NATIVE(IntPtr[] colors)
+        {
+            this.KeyColor = colors;
+        }
+    }
+
 
     public enum EFF_INDEX
     {
