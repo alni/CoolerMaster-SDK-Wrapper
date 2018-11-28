@@ -73,6 +73,15 @@ namespace Sharp_SDK
         [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern LAYOUT_KEYOBARD GetDeviceLayout();
 
+
+        public delegate void KEY_CALLBACK(int iRow, int iColumn, bool bPressed);
+
+        [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern void SetKeyCallBack(KEY_CALLBACK callback);
+
+        [DllImport("SDKDLL.DLL", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool EnableKeyInterrupt(bool bEnable);
+
     }
 
     public struct KEY_COLOR
