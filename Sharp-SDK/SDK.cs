@@ -148,7 +148,14 @@ namespace Sharp_SDK
         DEV_MMouse_L,
         DEV_MMouse_S,
         DEV_MKeys_M,
-        DEV_MKeys_S_White
+        DEV_MKeys_S_White,
+        DEV_MM520,
+        DEV_MM530,
+        DEV_MK750,
+        DEV_CK372,
+        DEV_CK550_552,
+        DEV_CK551,
+        DEV_DEFAULT = 0xFFFF
     }
 
     public enum LAYOUT_KEYOBARD
