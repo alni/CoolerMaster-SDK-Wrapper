@@ -219,21 +219,21 @@ namespace Demo
 
         private void txtMatrixR_LostFocus(object sender, RoutedEventArgs e)
         {
-            int row = dropRow.SelectedIndex;
-            int col = dropCol.SelectedIndex;
+            int row = (int)dropRow.SelectedItem;
+            int col = (int)dropCol.SelectedItem;
 
             Regex regex = new Regex("[^0-9]+");
             if (regex.IsMatch(txtMatrixR.Text)) txtMatrixR.Text = "0";
-            else if(int.Parse(txtMatrixR.Text) > 255) txtMatrixG.Text = "255";
-            else if (int.Parse(txtMatrixR.Text) < 0) txtMatrixG.Text = "0";
+            else if(int.Parse(txtMatrixR.Text) > 255) txtMatrixR.Text = "255";
+            else if (int.Parse(txtMatrixR.Text) < 0) txtMatrixR.Text = "0";
 
             Data.ColorMatrix.KeyColors[row, col] = new KeyColor(byte.Parse(txtMatrixR.Text), byte.Parse(txtMatrixG.Text), byte.Parse(txtMatrixB.Text));
         }
 
         private void txtMatrixG_LostFocus(object sender, RoutedEventArgs e)
         {
-            int row = dropRow.SelectedIndex;
-            int col = dropCol.SelectedIndex;
+            int row = (int)dropRow.SelectedItem;
+            int col = (int)dropCol.SelectedItem;
 
             Regex regex = new Regex("[^0-9]+");
             if (regex.IsMatch(txtMatrixG.Text)) txtMatrixG.Text = "0";
@@ -245,8 +245,8 @@ namespace Demo
 
         private void txtMatrixB_LostFocus(object sender, RoutedEventArgs e)
         {
-            int row = dropRow.SelectedIndex;
-            int col = dropCol.SelectedIndex;
+            int row = (int)dropRow.SelectedItem;
+            int col = (int)dropCol.SelectedItem;
 
             Regex regex = new Regex("[^0-9]+");
             if (regex.IsMatch(txtMatrixB.Text)) txtMatrixB.Text = "0";
@@ -260,8 +260,8 @@ namespace Demo
         {
             try
             {
-                int row = dropRow.SelectedIndex;
-                int col = dropCol.SelectedIndex;
+                int row = (int)dropRow.SelectedItem;
+                int col = (int)dropCol.SelectedItem;
 
                 Data.ColorMatrix.KeyColors[row, col] = new KeyColor(byte.Parse(txtMatrixR.Text), byte.Parse(txtMatrixG.Text), byte.Parse(txtMatrixB.Text));
 
